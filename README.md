@@ -88,7 +88,7 @@ then restart server to apply the changes<br>
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`<br>
 - Install suggested plugins<br>
 - Add the "Docker Pipeline" and "Pipeline Utility Steps" plugins<br>
-<br>
+
 ### Create Pipeline in Jenkins:<br>
 - Select "New Item" - "Pipeline"<br>
 - Set "Name" ("Demo" or something)<br>
@@ -101,7 +101,7 @@ then restart server to apply the changes<br>
 - Set "Script Path" with the path to the Jenkins file (like "Jenkinsfile")<br>
 <br>
 Click "Save" finally<br>
-<br>
+
 #### Configure entities in Jenkins (different variable parameters):<br>
 - In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
 Jenkins > Credentials > System > Global credentials<br>
@@ -109,7 +109,6 @@ Add Credentials:<br>
 Kind: Secret text<br>
 Secret: the password, which was specified with Cosign key pair generation<br>
 ID (this ID will be used in the pipeline): cosign-key-password<br>
-<br>
 - If you want the NVD key for the OWASP Dependency Check base downloading - use the https://nvd.nist.gov/developers/request-an-api-key link to obtain it. Then you may create the 'NVD-key' parameter using the same way as for the key password above<br>
 - To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file:<br>
 Jenkins > Credentials > System > Global credentials<br>
