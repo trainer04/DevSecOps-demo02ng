@@ -66,6 +66,12 @@ Run Hashicorp Vault in the Dev mode (all secrets shored in RAM memory only, not 
 Also, here we use the "test-only-token" text as a token to access the Vault (you may replace it with other text - we will use the text furter in the pipeline as parametr)<br>
 `sudo docker run -d --name=vault --restart=always --cap-add=IPC_LOCK -p 8200:8200 -e 'VAULT_DEV_ROOT_TOKEN_ID=test-only-token' hashicorp/vault`<br>
 
+Copy the private key inside the Vault container<br>
+`sudo docker cp cosign.key vault:/tmp/cosign.key`<br>
+
+Put the key in the Vault using the token, provided above ("test-only-token" or your one)<br>
+`sudo docker exec -e VAULT_TOKEN=test-only-token -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/docker-signing/cosign-private key=@/tmp/cosign.key`<br>
+
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
 
