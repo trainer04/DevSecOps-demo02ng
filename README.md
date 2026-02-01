@@ -33,7 +33,7 @@ According [instructions](https://docs.docker.com/engine/install/)<br>
 - Setup the local repo as insecure storage:<br>
 `echo '{"insecure-registries": ["192.168.0.5:5000"]}' | sudo tee /etc/docker/daemon.json`<br>
 `sudo systemctl restart docker`<br>
-(replace the "192.168.0.5" address with your repo IP)<br>
+(replace the "192.168.0.5" address with your local repo IP)<br>
 
 - We will need the "mysql:5.7" container, tagged with the local registry IP and stored in the local registry (just for our vuln app deployment scenario). Replace "192.168.0.5" with your local repo IP<br>
 `sudo docker pull mysql:5.7`<br>
