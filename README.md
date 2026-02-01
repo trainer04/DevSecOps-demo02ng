@@ -13,7 +13,7 @@ The project includes general CI/CD steps with security tools.<br>
 and others...<br>
 
 ## How to setup the demoset (Linux)
-You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment" (<b>"Demo env"</b>), and another one - for a docker repo (<b>"Repo"</b>)
+You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment" (<b>"demo env"</b>), and another one - for a docker repo (<b>"local repo"</b>)
 
 ### For the both servers<br>
 - Check partition size (setup > 50 Gb if necessary)<br>
@@ -22,11 +22,11 @@ You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment" (<b>"De
 - Install Docker<br>
 According [instructions](https://docs.docker.com/engine/install/)<br>
 
-### For the "Repo" server
+### For the "local repo" server
 - Setup local repo for Docker:<br>
 `sudo docker run -d -p 5000:5000 --restart=always --name local-registry registry:2`<br>
 
-### For the "Demo env" server
+### For the "demo env" server
 - Install Java 21<br>
 `sudo apt install openjdk-21-jdk`<br>
 
