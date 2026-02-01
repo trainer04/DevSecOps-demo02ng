@@ -72,6 +72,9 @@ Copy the private key inside the Vault container<br>
 Put the key in the Vault using the token, provided above ("test-only-token" or your one). REMEMBER: this command should be repeated after each Vault reboot!<br>
 `sudo docker exec -e VAULT_TOKEN=test-only-token -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/docker-signing/cosign-private key=@/tmp/cosign.key`<br>
 In case of the command execution success the output should show the created secret metadata<br>
+<br>
+To double-check the secret availability and its content you can with the following command (where 192.168.0.4 - your "demo env" server IP)<br>
+`curl -s --header "X-Vault-Token: test-only-token" http://192.168.0.4:8200/v1/secret/data/docker-signing/cosign-private | jq`<br>
 
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
