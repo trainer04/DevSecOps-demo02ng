@@ -524,23 +524,31 @@ pipeline {
             steps {
                 echo "Verifying Docker image signature with Cosign..."
                 script {
-                    withCredentials([file(credentialsId: 'cosign-public-key', variable: 'COSIGN_PUBLIC_KEY')])
+                    withCredentials([file(credentialsId: 'cosign-public-key', variable: 'COSIGN_PUBLIC_KEY_FILE')])
                     {
                     def imageToVerify = env.REGISTRY_LATEST
                     def verificationPassed = false
                     
                     echo "=== Verifying image signature: ${imageToVerify} ==="
                     
+                    sh '''
+                    echo "Creating temporary public key file with proper permissions..."
+                    TEMP_KEY_FILE="${WORKSPACE}/temp_cosign.pub"
+                    cp "${COSIGN_PUBLIC_KEY_FILE}" "${TEMP_KEY_FILE}"
+                    chmod 644 "${TEMP_KEY_FILE}"
+                    '''
+                    
                     // Checking the signature
                     try {
                         
                         sh """
+                        
                             echo "Attempting to verify image signature..."
                             
                             # Checking signature with public key
                             docker run --rm \
                                 -v /var/run/docker.sock:/var/run/docker.sock \
-                                -v "\${COSIGN_PUBLIC_KEY}:/cosign.pub:ro" \
+                                -v "${WORKSPACE}/temp_cosign.pub:/cosign.pub:ro" \
                                 gcr.io/projectsigstore/cosign:latest \
                                 verify --key /cosign.pub \
                                        --allow-insecure-registry \
@@ -555,6 +563,9 @@ pipeline {
                     } catch (Exception e) {
                         echo "❌ Error during signature verification: ${e.message}"
                         verificationPassed = false
+                    } finally {
+                        echo "Cleaning up temporary key file..."
+                        rm -f "${WORKSPACE}/temp_cosign.pub" 2>/dev/null || true
                     }
                     
                     // If the signature verification failed - asking for the further decision
