@@ -15,71 +15,70 @@ and others...<br>
 ## How to setup the demoset (Linux)
 You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment", another one - for docker repo
 
-### For both servers
-Check partition size (setup > 50 Gb if necessary)<br>
+### For both servers<br>
+- Check partition size (setup > 50 Gb if necessary)<br>
 `df -h`<br>
 
-Install Docker<br>
+- Install Docker<br>
 According [instructions](https://docs.docker.com/engine/install/)<br>
 
 ### For the repo server
-Setup local repo for Docker:<br>
+- Setup local repo for Docker:<br>
 `sudo docker run -d -p 5000:5000 --restart=always --name local-registry registry:2`<br>
 
 ### For the "demo env" server
-Install Java 21<br>
+- Install Java 21<br>
 `sudo apt install openjdk-21-jdk`<br>
 
-Setup the local repo as insecure storage:<br>
+- Setup the local repo as insecure storage:<br>
 `echo '{"insecure-registries": ["192.168.0.5:5000"]}' | sudo tee /etc/docker/daemon.json`<br>
 `sudo systemctl restart docker`<br>
 (replace the "192.168.0.5" address with your repo IP)<br>
 
-We will need the "mysql:5.7" container, tagged with the local registry IP and stored in the local registry (just for our vuln app deployment scenario). Replace "192.168.0.5" with your local repo IP<br>
+- We will need the "mysql:5.7" container, tagged with the local registry IP and stored in the local registry (just for our vuln app deployment scenario). Replace "192.168.0.5" with your local repo IP<br>
 `sudo docker pull mysql:5.7`<br>
 `sudo docker tag mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
 `sudo docker push 192.168.0.5:5000/mysql:5.7`<br>
-<br>
-Check that the mysql image pushed successfully:<br>
+- Check that the mysql image pushed successfully:<br>
 `curl -s http://192.168.0.5:5000/v2/_catalog`<br>
 You should see something like this: `{"repositories":["mysql"]}`<br>
 <br>
 `curl -s http://192.168.0.5:5000/v2/mysql/tags/list`<br>
 Desired output: `{"name":"mysql","tags":["5.7"]}`<br>
 
-Remove the mysql images from the "demo env" server using the command:<br>
+- Remove the mysql images from the "demo env" server using the command:<br>
 `sudo docker rmi mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
 
-Install Cosign locally (the only purpose - to use the tool for pub/private key pair generation) - [instructions](https://docs.sigstore.dev/cosign/system_config/installation/#with-the-cosign-binary-or-rpmdpkg-package)<br>
+- Install Cosign locally (the only purpose - to use the tool for pub/private key pair generation) - [instructions](https://docs.sigstore.dev/cosign/system_config/installation/#with-the-cosign-binary-or-rpmdpkg-package)<br>
 `curl -O -L "https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64"`<br>
 `sudo mv cosign-linux-amd64 /usr/local/bin/cosign`<br>
 `sudo chmod +x /usr/local/bin/cosign`<br>
 
-Generate the key pair with Cosign (for the test CI/CD please specify the password for the private key and remember it - we will use it in this scenario. In production may be decided to use or not of such password according the desired security policies)<br>
+- Generate the key pair with Cosign (for the test CI/CD please specify the password for the private key and remember it - we will use it in this scenario. In production may be decided to use or not of such password according the desired security policies)<br>
 `sudo cosign generate-key-pair`<br>
 After the command execution, you should have two files in the current path:<br>
 `cosign.key` (private encrypted key)<br>
 and<br>
 `cosign.pub` (public key)<br>
 
-Run Hashicorp Vault in the Dev mode (all secrets shored in RAM memory only, not on disk - and will require to set them after each Vault restart)<br>
+- Run Hashicorp Vault in the Dev mode (all secrets shored in RAM memory only, not on disk - and will require to set them after each Vault restart)<br>
 Also, here we use the "test-only-token" text as a token to access the Vault (you may replace it with other text - we will use the text furter in the pipeline as parameter)<br>
 `sudo docker run -d --name=vault --restart=always --cap-add=IPC_LOCK -p 8200:8200 -e 'VAULT_DEV_ROOT_TOKEN_ID=test-only-token' hashicorp/vault`<br>
 
-Copy the private key inside the Vault container<br>
+- Copy the private key inside the Vault container<br>
 `sudo docker cp cosign.key vault:/tmp/cosign.key`<br>
 
-Put the key in the Vault using the token, provided above ("test-only-token" or your one). REMEMBER: this command should be repeated after each Vault reboot!<br>
+- Put the key in the Vault using the token, provided above ("test-only-token" or your one). REMEMBER: this command should be repeated after each Vault reboot!<br>
 `sudo docker exec -e VAULT_TOKEN=test-only-token -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/docker-signing/cosign-private key=@/tmp/cosign.key`<br>
 In case of the command execution success the output should show the created secret metadata<br>
-<br>
-To double-check the secret availability and its content you can with the following command (where 192.168.0.4 - your "demo env" server IP)<br>
+
+- To double-check the secret availability and its content you can with the following command (where 192.168.0.4 - your "demo env" server IP)<br>
 `curl -s --header "X-Vault-Token: test-only-token" http://192.168.0.4:8200/v1/secret/data/docker-signing/cosign-private | jq`<br>
 
-Install Jenkins<br>
+### Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
 
-Add user jenkins to the docker group<br>
+- Add user jenkins to the docker group<br>
 `sudo usermod -a -G docker jenkins`<br>
 then restart server to apply the changes<br>
 
