@@ -19,9 +19,7 @@ You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment", anothe
 Check partition size (setup > 20 Gb if necessary)<br>
 `df -h`<br>
 
-Install Java 17 (or 21)<br>
-`sudo apt install openjdk-17-jdk`<br>
-or<br>
+Install Java 21<br>
 `sudo apt install openjdk-21-jdk`<br>
 
 Install Docker<br>
@@ -54,10 +52,10 @@ Create Pipeline:<br>
 <br>
 - Select "New Item" - "Pipeline"<br>
 - Set "Name" ("Demo" or something)<br>
-- Set "GitHub project" with an URL to the project (like "https://github.com/trainer04/DevSecOps-demo02ext.git")<br>
+- Set "GitHub project" with an URL to the project (like "https://github.com/trainer04/DevSecOps-demo02ng.git")<br>
 - Set "Definition" with "Pipeline script from SCM"<br>
 - Set "SCM" as "Git"<br>
-- Set "Repository URL" with your URL (like "https://github.com/trainer04/DevSecOps-demo02ext.git")<br>
+- Set "Repository URL" with your URL (like "https://github.com/trainer04/DevSecOps-demo02ng.git")<br>
 - Set credentials if necessary (for private repos)<br>
 - Set "Branch Specifier" as "*/main"<br>
 - Set "Script Path" with the path to the Jenkins file (like "Jenkinsfile")<br>
