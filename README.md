@@ -89,7 +89,7 @@ then restart server to apply the changes<br>
 - Install suggested plugins<br>
 - Add the "Docker Pipeline" and "Pipeline Utility Steps" plugins<br>
 <br>
-###Create Pipeline in Jenkins:<br>
+### Create Pipeline in Jenkins:<br>
 - Select "New Item" - "Pipeline"<br>
 - Set "Name" ("Demo" or something)<br>
 - Set "GitHub project" with an URL to the project (like "https://github.com/trainer04/DevSecOps-demo02ng.git"). It's optional - if you use GitHub project<br>
@@ -102,7 +102,7 @@ then restart server to apply the changes<br>
 <br>
 Click "Save" finally<br>
 <br>
-###Configure entities in Jenkins (different variable parameters):<br>
+#### Configure entities in Jenkins (different variable parameters):<br>
 - In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
 Jenkins > Credentials > System > Global credentials<br>
 Add Credentials:<br>
