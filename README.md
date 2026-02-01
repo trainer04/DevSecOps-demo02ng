@@ -102,7 +102,7 @@ Click "Save" finally<br>
 
 ### Configure entities in Jenkins (different variable parameters):<br>
 
-#### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
+#### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they shpuld be stored in Vault)<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - Add Credentials:<br>
 - Kind: Secret text<br>
