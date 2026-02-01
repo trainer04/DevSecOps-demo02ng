@@ -87,7 +87,7 @@ then restart server to apply the changes<br>
 - Unblock Jenkins with https://192.168.0.4:8080 (replace the "192.168.0.4" address with the "demo env" server IP)<br> 
 `sudo cat /var/lib/jenkins/secrets/initialAdminPassword`<br>
 - Install suggested plugins<br>
-- Add the "Docker Pipeline" and "Pipeline Utility Steps Plugin" plugins<br>
+- Add the "Docker Pipeline" and "Pipeline Utility Steps" plugins<br>
 <br>
 Create Pipeline:<br>
 <br>
