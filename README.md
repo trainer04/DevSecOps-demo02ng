@@ -110,7 +110,7 @@ Kind: Secret text<br>
 Secret: - the password, which was specified with Cosign key pair generation<br>
 ID (this ID will be used in the pipeline): cosign-key-password<br>
 <br>
-If you have the NVD key for the OWASP Dependency Check base downloading - [use the link to obtain it](https://nvd.nist.gov/developers/request-an-api-key) you may create the 'NVD-key' parameter using the same way as for the key password above<br>
+If you want the NVD key for the OWASP Dependency Check base downloading - use the [link](https://nvd.nist.gov/developers/request-an-api-key) to obtain it. Then you may create the 'NVD-key' parameter using the same way as for the key password above<br>
 
 ### Pipeline proxy settings<br>
 To speed-up some network-related operations, the pipene includes proxy configuration, which is saved in Jenkins credentials store. If you do not use any proxies, just comment or remove the related parameters from the `Jenkinsfile`, like:<br>
