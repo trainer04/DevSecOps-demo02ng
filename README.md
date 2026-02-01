@@ -13,20 +13,20 @@ The project includes general CI/CD steps with security tools.<br>
 and others...<br>
 
 ## How to setup the demoset (Linux)
-You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment", another one - for docker repo
+You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment" (<b>"demo env"</b>), and another one - for a docker repo (<b>"Repo"</b>)
 
-### For both servers<br>
+### For the both servers<br>
 - Check partition size (setup > 50 Gb if necessary)<br>
 `df -h`<br>
 
 - Install Docker<br>
 According [instructions](https://docs.docker.com/engine/install/)<br>
 
-### For the repo server
+### For the "Repo" server
 - Setup local repo for Docker:<br>
 `sudo docker run -d -p 5000:5000 --restart=always --name local-registry registry:2`<br>
 
-### For the "demo env" server
+### For the "Demo env" server
 - Install Java 21<br>
 `sudo apt install openjdk-21-jdk`<br>
 
@@ -87,7 +87,7 @@ then restart server to apply the changes<br>
 - Install suggested plugins<br>
 - Add the <b>"Docker Pipeline"</b> and <b>"Pipeline Utility Steps"</b> plugins<br>
 
-### Create Pipeline in Jenkins:<br>
+### Create Pipeline in Jenkins<br>
 - Select "New Item" - "Pipeline"<br>
 - Set "Name" ("Demo" or something)<br>
 - Set "GitHub project" with an URL to the project (like "https://github.com/trainer04/DevSecOps-demo02ng.git"). It's optional - if you use GitHub project<br>
@@ -100,7 +100,7 @@ then restart server to apply the changes<br>
 <br>
 Click "Save" finally<br>
 
-### Configure entities in Jenkins (different variable parameters):<br>
+### Configure entities in Jenkins (different variable parameters)<br>
 
 #### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they should be stored in Vault)<br>
 - Jenkins > Credentials > System > Global credentials<br>
