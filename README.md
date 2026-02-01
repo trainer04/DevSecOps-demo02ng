@@ -105,7 +105,7 @@ Click "Save" finally<br>
 #### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they should be stored in Vault)<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - "Add Credentials"<br>
-- Kind: Secret text<br>
+- Kind: Secret <b>text</b><br>
 - Secret: the password, which was specified with Cosign key pair generation<br>
 - ID (this ID will be used in the pipeline): <b>cosign-key-password</b><br>
 
@@ -115,7 +115,7 @@ Use the https://nvd.nist.gov/developers/request-an-api-key link to obtain the NV
 #### To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file:<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - "Add Credentials"<br>
-- Kind: Secret file<br>
+- Kind: Secret <b>file</b><br>
 - Select the "cosign.pub" file (copy it from the "demo env" server with scp or WinSCP or just create the text file with the public key content and save it locally)<br>
 - ID (this ID will be used in the pipeline): <b>cosign-public-key</b><br>
 
