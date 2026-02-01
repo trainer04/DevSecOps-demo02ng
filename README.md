@@ -42,7 +42,6 @@ According [instructions](https://docs.docker.com/engine/install/)<br>
 - Check that the mysql image pushed successfully:<br>
 `curl -s http://192.168.0.5:5000/v2/_catalog`<br>
 You should see something like this: `{"repositories":["mysql"]}`<br>
-<br>
 `curl -s http://192.168.0.5:5000/v2/mysql/tags/list`<br>
 Desired output: `{"name":"mysql","tags":["5.7"]}`<br>
 
