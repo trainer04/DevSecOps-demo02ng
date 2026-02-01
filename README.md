@@ -47,7 +47,8 @@ You should see something like this: `{"repositories":["mysql"]}`<br>
 `curl -s http://192.168.0.5:5000/v2/mysql/tags/list`<br>
 Desired output: `{"name":"mysql","tags":["5.7"]}`<br>
 
-Remove the mysql images from the "demo env" server using the `sudo docker rmi mysql:5.7 192.168.0.5:5000/mysql:5.7` command<br>
+Remove the mysql images from the "demo env" server using the command:<br>
+`sudo docker rmi mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
 
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
