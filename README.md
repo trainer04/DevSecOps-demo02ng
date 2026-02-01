@@ -55,6 +55,10 @@ Install Cosign locally (the only purpose - use the tool for pub/private key pair
 `sudo mv cosign-linux-amd64 /usr/local/bin/cosign`<br>
 `sudo chmod +x /usr/local/bin/cosign`<br>
 
+Generate the key pair with Cosign (for the test CI/CD please specify the password for the private key and remember it - we will use it in this scenario. In production may be decided to use or not of such password according the desired security policies)<br>
+`sudo cosign generate-key-pair`<br>
+After the command, you should have two files in the current path: `cosign.key` (private encrypted key) and `cosign.pub` (public key)<br>
+
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
 
