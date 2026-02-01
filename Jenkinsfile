@@ -11,16 +11,16 @@ pipeline {
         NVD_API_KEY = credentials('NVD-key')
         
         // Vault settings
-        VAULT_ADDR = 'http://192.168.100.192:8200'
+        VAULT_ADDR = 'http://192.168.100.194:8200'
         VAULT_TOKEN = 'test-only-token'  // Demo purpose only! In prod - AppRole, JWT and so on
         
         // Network settings
-        REGISTRY_HOST = '192.168.100.193:5000'
+        REGISTRY_HOST = '192.168.100.195:5000'
         APP_NAME = 'vulnerable-app'
         MYSQL_IMAGE = "${REGISTRY_HOST}/mysql:5.7"
         
         // Project settings
-        GIT_REPO = 'https://github.com/trainer04/DevSecOps-demo02ext.git'
+        GIT_REPO = 'https://github.com/trainer04/DevSecOps-demo02ng.git'
         
         // Docker tags
         BUILD_TAG = "${APP_NAME}:${BUILD_NUMBER}"
