@@ -116,7 +116,7 @@ To verify the signed image you will need the public key of the generated key pai
 Jenkins > Credentials > System > Global credentials<br>
 Add Credentials:<br>
 Kind: Secret file<br>
-Select the "cosign.pub" file (copy it from the "demo env" server with scp or WinSCP or just create the text file with the public key content and save it locally)
+Select the "cosign.pub" file (copy it from the "demo env" server with scp or WinSCP or just create the text file with the public key content and save it locally)<br>
 ID (this ID will be used in the pipeline): cosign-public-key<br>
 
 ### Pipeline proxy settings<br>
