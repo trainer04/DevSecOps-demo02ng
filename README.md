@@ -13,7 +13,7 @@ The project includes general CI/CD steps with security tools.<br>
 and others...<br>
 
 ## How to setup the demoset (Linux)
-You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment" (<b>"demo env"</b>), and another one - for a docker repo (<b>"Repo"</b>)
+You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment" (<b>"Demo env"</b>), and another one - for a docker repo (<b>"Repo"</b>)
 
 ### For the both servers<br>
 - Check partition size (setup > 50 Gb if necessary)<br>
