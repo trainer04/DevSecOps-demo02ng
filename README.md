@@ -112,7 +112,7 @@ Click "Save" finally<br>
 #### If you want the NVD key for the OWASP Dependency Check base downloading<br>
 Use the https://nvd.nist.gov/developers/request-an-api-key link to obtain the NVD key. Then you may create the <b>'NVD-key'</b> parameter using the same way as for the key password above<br>
 
-#### To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file:<br>
+#### To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - "Add Credentials"<br>
 - Kind: Secret <b>file</b><br>
