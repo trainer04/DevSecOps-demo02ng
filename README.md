@@ -62,6 +62,10 @@ After the command execution, you should have two files in the current path:<br>
 and<br>
 `cosign.pub` (public key)<br>
 
+Run Hashicorp Vault in the Dev mode (all secrets shored in RAM memory only, not on disk - and will require to set them after each Vault restart)<br>
+Also, here we use the "test-only-token" text as a token to access the Vault (you may replace it with other text - we will use the text furter in the pipeline as parametr)<br>
+`docker run -d --name=vault --restart=always --cap-add=IPC_LOCK -p 8200:8200 -e 'VAULT_DEV_ROOT_TOKEN_ID=test-only-token' hashicorp/vault`<br>
+
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
 
