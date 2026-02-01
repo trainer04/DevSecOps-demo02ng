@@ -67,7 +67,7 @@ Also, here we use the "test-only-token" text as a token to access the Vault (you
 - Copy the private key inside the Vault container<br>
 `sudo docker cp cosign.key vault:/tmp/cosign.key`<br>
 
-- Put the key in the Vault using the token, provided above ("test-only-token" or your one). REMEMBER: this command should be repeated after each Vault reboot!<br>
+- Put the key in the Vault using the token, provided above ("test-only-token" or your one). <b>REMEMBER: this command should be repeated after each Vault reboot!</b><br>
 `sudo docker exec -e VAULT_TOKEN=test-only-token -e VAULT_ADDR=http://127.0.0.1:8200 vault vault kv put secret/docker-signing/cosign-private key=@/tmp/cosign.key`<br>
 In case of the command execution success the output should show the created secret metadata<br>
 
