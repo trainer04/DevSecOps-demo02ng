@@ -19,9 +19,6 @@ You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment", anothe
 Check partition size (setup > 50 Gb if necessary)<br>
 `df -h`<br>
 
-Install Java 21<br>
-`sudo apt install openjdk-21-jdk`<br>
-
 Install Docker<br>
 According [instructions](https://docs.docker.com/engine/install/)<br>
 
@@ -30,6 +27,9 @@ Setup local repo for Docker:<br>
 `sudo docker run -d -p 5000:5000 --restart=always --name local-registry registry:2`<br>
 
 ### For the "demo env" server
+Install Java 21<br>
+`sudo apt install openjdk-21-jdk`<br>
+
 Setup the local repo as insecure storage:<br>
 `echo '{"insecure-registries": ["192.168.0.5:5000"]}' | sudo tee /etc/docker/daemon.json`<br>
 `sudo systemctl restart docker`<br>
