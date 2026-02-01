@@ -16,7 +16,7 @@ and others...<br>
 You need 2 Linux boxes (Ubuntu) - one for Jenkins and "demo environment", another one - for docker repo
 
 ### For both servers
-Check partition size (setup > 20 Gb if necessary)<br>
+Check partition size (setup > 50 Gb if necessary)<br>
 `df -h`<br>
 
 Install Java 21<br>
