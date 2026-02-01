@@ -39,6 +39,7 @@ We will need the "mysql:5.7" container, tagged with the local registry IP and st
 `sudo docker pull mysql:5.7`<br>
 `sudo docker tag mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
 `sudo docker push 192.168.0.5:5000/mysql:5.7`<br>
+<br>
 Check that the mysql image pushed successfully:<br>
 `curl -s http://192.168.0.5:5000/v2/_catalog`<br>
 You should see something like this: `{"repositories":["mysql"]}`<br>
