@@ -50,6 +50,11 @@ Desired output: `{"name":"mysql","tags":["5.7"]}`<br>
 Remove the mysql images from the "demo env" server using the command:<br>
 `sudo docker rmi mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
 
+Install Cosign locally (the only purpose - use the tool for pub/private key pair generation) - [instructions](https://docs.sigstore.dev/cosign/system_config/installation/#with-the-cosign-binary-or-rpmdpkg-package)<br>
+`curl -O -L "https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64"`<br>
+`sudo mv cosign-linux-amd64 /usr/local/bin/cosign`<br>
+`sudo chmod +x /usr/local/bin/cosign`<br>
+
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
 
