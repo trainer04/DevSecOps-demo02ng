@@ -63,7 +63,7 @@ and<br>
 `cosign.pub` (public key)<br>
 
 Run Hashicorp Vault in the Dev mode (all secrets shored in RAM memory only, not on disk - and will require to set them after each Vault restart)<br>
-Also, here we use the "test-only-token" text as a token to access the Vault (you may replace it with other text - we will use the text furter in the pipeline as parametr)<br>
+Also, here we use the "test-only-token" text as a token to access the Vault (you may replace it with other text - we will use the text furter in the pipeline as parameter)<br>
 `sudo docker run -d --name=vault --restart=always --cap-add=IPC_LOCK -p 8200:8200 -e 'VAULT_DEV_ROOT_TOKEN_ID=test-only-token' hashicorp/vault`<br>
 
 Copy the private key inside the Vault container<br>
@@ -109,6 +109,8 @@ Add new Secret text:<br>
 Kind: Secret text<br>
 Secret: - the password, which was specified with Cosign key pair generation<br>
 ID (this ID will be used in the pipeline): cosign-key-password<br>
+<br>
+If you have the NVD key for the OWASP Dependency Check base downloading ([use the link to obtain it](https://nvd.nist.gov/developers/request-an-api-key)) you may create the 'NVD-key' parameter using the same way as for the key password above<br>
 
 ### Pipeline proxy settings<br>
 To speed-up some network-related operations, the pipene includes proxy configuration, which is saved in Jenkins credentials store. If you do not use any proxies, just comment or remove the related parameters from the `Jenkinsfile`, like:<br>
