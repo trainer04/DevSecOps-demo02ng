@@ -102,6 +102,13 @@ Create Pipeline:<br>
 - Set "Script Path" with the path to the Jenkins file (like "Jenkinsfile")<br>
 <br>
 Save the pipeline<br>
+<br>
+In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
+Jenkins > Credentials > System > Global credentials<br>
+Add new Secret text:<br>
+Kind: Secret text<br>
+Secret: - the password, which was specified with Cosign key pair generation<br>
+ID (this ID will be used in the pipeline): cosign-key-password<br>
 
 ### Pipeline proxy settings<br>
 To speed-up some network-related operations, the pipene includes proxy configuration, which is saved in Jenkins credentials store. If you do not use any proxies, just comment or remove the related parameters from the `Jenkinsfile`, like:<br>
