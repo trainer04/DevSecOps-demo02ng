@@ -15,7 +15,8 @@ pipeline {
         VAULT_TOKEN = 'test-only-token'  // Demo purpose only! In prod - AppRole, JWT and so on
         
         // Network settings
-        REGISTRY_HOST = '192.168.100.195:5000'
+        // REGISTRY_HOST = '192.168.100.195:5000'
+        REGISTRY_HOST = credentials('registry-host-ip')
         APP_NAME = 'vulnerable-app'
         MYSQL_IMAGE = "${REGISTRY_HOST}/mysql:5.7"
         

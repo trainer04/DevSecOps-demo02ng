@@ -102,6 +102,15 @@ Click "Save" finally<br>
 
 ### Configure entities in Jenkins (different variable parameters)<br>
 
+For the possibility to use the demo pipeline without cloning and further editing of the repository files, some set of configurable pipeline parameters are moved in the Jenkins Credentials store<br>
+
+#### The IP of the "local repo" server<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- "Add Credentials"<br>
+- Kind: Secret <b>text</b><br>
+- Secret: just the local repo IP and port - text <b>without backticks</b> (something like 192.168.0.5:5000)<br>
+- ID (this ID will be used in the pipeline): <b>registry-host-ip</b><br>
+
 #### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they should be stored in Vault)<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - "Add Credentials"<br>
