@@ -102,20 +102,23 @@ then restart server to apply the changes<br>
 <br>
 Click "Save" finally<br>
 
-#### Configure entities in Jenkins (different variable parameters):<br>
-- In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
-Jenkins > Credentials > System > Global credentials<br>
-Add Credentials:<br>
-Kind: Secret text<br>
-Secret: the password, which was specified with Cosign key pair generation<br>
-ID (this ID will be used in the pipeline): cosign-key-password<br>
-- If you want the NVD key for the OWASP Dependency Check base downloading - use the https://nvd.nist.gov/developers/request-an-api-key link to obtain it. Then you may create the 'NVD-key' parameter using the same way as for the key password above<br>
-- To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file:<br>
-Jenkins > Credentials > System > Global credentials<br>
-Add Credentials:<br>
-Kind: Secret file<br>
-Select the "cosign.pub" file (copy it from the "demo env" server with scp or WinSCP or just create the text file with the public key content and save it locally)<br>
-ID (this ID will be used in the pipeline): cosign-public-key<br>
+### Configure entities in Jenkins (different variable parameters):<br>
+
+#### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- Add Credentials:<br>
+- Kind: Secret text<br>
+- Secret: the password, which was specified with Cosign key pair generation<br>
+- ID (this ID will be used in the pipeline): cosign-key-password<br>
+
+#### If you want the NVD key for the OWASP Dependency Check base downloading - use the https://nvd.nist.gov/developers/request-an-api-key link to obtain it. Then you may create the 'NVD-key' parameter using the same way as for the key password above<br>
+
+#### To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file:<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- Add Credentials:<br>
+- Kind: Secret file<br>
+- Select the "cosign.pub" file (copy it from the "demo env" server with scp or WinSCP or just create the text file with the public key content and save it locally)<br>
+- ID (this ID will be used in the pipeline): cosign-public-key<br>
 
 ### Pipeline proxy settings<br>
 To speed-up some network-related operations, the pipene includes proxy configuration, which is saved in Jenkins credentials store. If you do not use any proxies, just comment or remove the related parameters from the `Jenkinsfile`, like:<br>
