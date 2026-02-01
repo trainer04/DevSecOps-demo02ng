@@ -50,14 +50,16 @@ Desired output: `{"name":"mysql","tags":["5.7"]}`<br>
 Remove the mysql images from the "demo env" server using the command:<br>
 `sudo docker rmi mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
 
-Install Cosign locally (the only purpose - use the tool for pub/private key pair generation) - [instructions](https://docs.sigstore.dev/cosign/system_config/installation/#with-the-cosign-binary-or-rpmdpkg-package)<br>
+Install Cosign locally (the only purpose - to use the tool for pub/private key pair generation) - [instructions](https://docs.sigstore.dev/cosign/system_config/installation/#with-the-cosign-binary-or-rpmdpkg-package)<br>
 `curl -O -L "https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64"`<br>
 `sudo mv cosign-linux-amd64 /usr/local/bin/cosign`<br>
 `sudo chmod +x /usr/local/bin/cosign`<br>
 
 Generate the key pair with Cosign (for the test CI/CD please specify the password for the private key and remember it - we will use it in this scenario. In production may be decided to use or not of such password according the desired security policies)<br>
 `sudo cosign generate-key-pair`<br>
-After the command, you should have two files in the current path: `cosign.key` (private encrypted key) and `cosign.pub` (public key)<br>
+After the command execution, you should have two files in the current path:<br>
+`cosign.key` (private encrypted key) and<br>
+`cosign.pub` (public key)<br>
 
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
