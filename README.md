@@ -89,7 +89,7 @@ then restart server to apply the changes<br>
 - Install suggested plugins<br>
 - Add the "Docker Pipeline" and "Pipeline Utility Steps" plugins<br>
 <br>
-Create Pipeline:<br>
+####Create Pipeline:<br>
 <br>
 - Select "New Item" - "Pipeline"<br>
 - Set "Name" ("Demo" or something)<br>
@@ -101,7 +101,7 @@ Create Pipeline:<br>
 - Set "Branch Specifier" as "*/main"<br>
 - Set "Script Path" with the path to the Jenkins file (like "Jenkinsfile")<br>
 <br>
-Save the pipeline<br>
+####Save the pipeline<br>
 <br>
 In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they stored in Vault)<br>
 Jenkins > Credentials > System > Global credentials<br>
