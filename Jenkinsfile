@@ -423,7 +423,7 @@ pipeline {
             }
         }
 		
-        // Step 4: Pushing to local Registry (.193)
+        // Step 4: Pushing to local Registry
         stage('Push to Registry') {
             steps {
                 echo "Pushing images to registry ${REGISTRY_HOST}..."
@@ -524,6 +524,8 @@ pipeline {
             steps {
                 echo "Verifying Docker image signature with Cosign..."
                 script {
+                    withCredentials([file(credentialsId: 'cosign-public-key', variable: 'COSIGN_PUBLIC_KEY')])
+                    {
                     def imageToVerify = env.REGISTRY_LATEST
                     def verificationPassed = false
                     
@@ -538,7 +540,7 @@ pipeline {
                             # Checking signature with public key
                             docker run --rm \
                                 -v /var/run/docker.sock:/var/run/docker.sock \
-                                -v "\$(pwd)/check/cosign.pub:/cosign.pub:ro" \
+                                -v "\${COSIGN_PUBLIC_KEY}:/cosign.pub:ro" \
                                 gcr.io/projectsigstore/cosign:latest \
                                 verify --key /cosign.pub \
                                        --allow-insecure-registry \
@@ -558,6 +560,7 @@ pipeline {
                     // If the signature verification failed - asking for the further decision
                     if (!verificationPassed) {
                         input 'Image signature verification failed. Continue with deployment?'
+                    }
                     }
                 }
             }
