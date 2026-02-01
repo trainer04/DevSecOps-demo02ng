@@ -35,6 +35,11 @@ Setup the local repo as insecure storage:<br>
 `sudo systemctl restart docker`<br>
 (replace the "192.168.0.5" address with your repo IP)<br>
 
+We will need the "mysql:5.7" container, tagged with the local registry IP and stored in the local registry (just for our vuln app deployment scenario). Replace "192.168.0.5" with your local repo IP<br>
+`sudo docker pull mysql:5.7`<br>
+`sudo docker tag mysql:5.7 192.168.0.5:5000/mysql:5.7`<br>
+`sudo docker push 192.168.0.5:5000/mysql:5.7`<br>
+
 Install Jenkins<br>
 According [instructions](https://www.jenkins.io/doc/book/installing/)<br>
 
