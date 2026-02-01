@@ -564,8 +564,10 @@ pipeline {
                         echo "❌ Error during signature verification: ${e.message}"
                         verificationPassed = false
                     } finally {
+                        sh '''
                         echo "Cleaning up temporary key file..."
                         rm -f "${WORKSPACE}/temp_cosign.pub" 2>/dev/null || true
+                        '''
                     }
                     
                     // If the signature verification failed - asking for the further decision
