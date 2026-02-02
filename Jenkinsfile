@@ -40,6 +40,7 @@ pipeline {
                         withCredentials([string(credentialsId: 'with-sast', variable: 'WITH_SAST_VALUE')]) {
                             env.WITH_SAST = WITH_SAST_VALUE
                             echo "✅ WITH_SAST value has been provided successfuly"
+                            echo "WITH_SAST = ${env.WITH_SAST}"
                         }
                     } catch (Exception e) {
                         echo "⚠️ WITH_SAST value has not been provided"
@@ -75,7 +76,8 @@ pipeline {
             steps {
                 echo "Running Semgrep SAST analysis..."
                 script {
-                if (\${env.WITH_SAST} == 'true') {
+                echo "WITH_SAST = ${env.WITH_SAST}"
+                if (env.WITH_SAST == 'true') {
                     try {
                         // Running Semgrep with docker-image
                         sh '''
