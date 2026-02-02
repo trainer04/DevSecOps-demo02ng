@@ -159,8 +159,8 @@ If you do not have the key, just use the empty string value ('') for the paramet
 ### SAST stage (Semgrep) settings<br>
 The actual pipeline uses Semgrep (as a Docker image) for the SAST stage. The configuration is that the Semgrep container needs a network connection to the https://semgrep.dev site (to obtain rules and so on). Meanwhile, the direct connection may not work properly and the stage fails<br>
 There are at the following ways to resolve it:<br>
-- To configure the Semgrep container to use a local rule storage (it is planned for further pipeline configurations - <b>not released here</b>)<br>
-- To skip the SAST stage in the pipeline (by setup the 'with-sast' parameter to an empty ('') or 'false 'false' values)<br>
+- To configure the Semgrep container to use a local rule storage (it is planned for further pipeline configurations - <b>not released here yet</b>)<br>
+- To skip the SAST stage in the pipeline (by setup the 'with-sast' parameter to an empty ('') or 'false 'false' values - see the related step for the 'with-sast' parameter below)<br>
 - To configure the Semgrep container to use a proxy to reach out the https://semgrep.dev site (<b>if you have such proxy</b>)<br>
 
 #### For the case please create the following set of parameters<br>
