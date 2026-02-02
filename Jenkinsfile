@@ -11,8 +11,10 @@ pipeline {
         NVD_API_KEY = credentials('NVD-key')
         
         // Vault settings
-        VAULT_ADDR = 'http://192.168.100.194:8200'
-        VAULT_TOKEN = 'test-only-token'  // Demo purpose only! In prod - AppRole, JWT and so on
+        // VAULT_ADDR = 'http://192.168.100.194:8200'
+        // VAULT_TOKEN = 'test-only-token'  // Demo purpose only! In prod - AppRole, JWT and so on
+        VAULT_ADDR = credentials('vault-ip')
+        VAULT_TOKEN = credentials('vault-token')
         
         // Network settings
         REGISTRY_HOST = credentials('registry-host-ip')
