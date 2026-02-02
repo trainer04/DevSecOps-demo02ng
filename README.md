@@ -141,7 +141,13 @@ For the possibility to use the demo pipeline without cloning and further editing
 - ID (this ID will be used in the pipeline): <b>cosign-key-password</b><br>
 
 #### If you want the NVD key for the OWASP Dependency Check base downloading<br>
-Use the https://nvd.nist.gov/developers/request-an-api-key link to obtain the NVD key. Then you may create the <b>'NVD-key'</b> parameter using the same way as for the key password above<br>
+Use the https://nvd.nist.gov/developers/request-an-api-key link to obtain the NVD key.<br>
+If you do not have the key, just use the empty string value ('') for the parameter (pipeline should work even if the provided key wrong - just with lower download speed of the NVD base)<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- "Add Credentials"<br>
+- Kind: Secret <b>text</b><br>
+- Secret: the received NVD key<br>
+- ID (this ID will be used in the pipeline): <b>NVD-key</b><br>
 
 #### To verify the signed image you will need the public key of the generated key pair. There are several ways how to provide it in the pipeline - here in our scenario let's use Jenkins Credentials to store it as a Secret file<br>
 - Jenkins > Credentials > System > Global credentials<br>
