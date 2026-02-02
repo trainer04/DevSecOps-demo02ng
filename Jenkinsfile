@@ -42,7 +42,7 @@ pipeline {
                             echo "✅ WITH_SAST value has been provided successfuly"
                         }
                         
-                } catch {
+                } catch (Exception e) {
                     echo "⚠️ WITH_SAST value has not been provided"
                     env.WITH_SAST = ''
                 }
