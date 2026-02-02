@@ -156,8 +156,26 @@ If you do not have the key, just use the empty string value ('') for the paramet
 - Select the "cosign.pub" file (copy it from the "demo env" server with scp or WinSCP or just create the text file with the public key content and save it locally)<br>
 - ID (this ID will be used in the pipeline): <b>cosign-public-key</b><br>
 
-### Pipeline proxy settings<br>
-To speed-up some network-related operations, the pipene includes proxy configuration, which is saved in Jenkins credentials store. If you do not use any proxies, just comment or remove the related parameters from the `Jenkinsfile`, like:<br>
-`...PROXY_FOR_TOOLS = credentials('proxy-settings')...`<br>
-and its usage like:<br>
-`...-e HTTP_PROXY="${PROXY_FOR_TOOLS}"...`<br>
+### SAST stage (Semgrep) settings<br>
+The actual pipeline uses Semgrep (as a Docker image) for the SAST stage. The configuration is that the Semgrep container needs a network connection to the https://semgrep.dev site (to obtain rules and so on). Meanwhile, the direct connection may not work properly and the stage fails<br>
+There are at the following ways to resolve it:<br>
+- To configure the Semgrep container to use a local rule storage (it is planned for further pipeline configurations - <b>not released here</b>)<br>
+- To skip the SAST stage in the pipeline (by setup the 'with-sast' parameter to an empty ('') or 'false 'false' values)<br>
+- To configure the Semgrep container to use a proxy to reach out the https://semgrep.dev site (<b>if you have such proxy</b>)<br>
+
+#### For the case please create the following set of parameters<br>
+The common path:<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- "Add Credentials"<br>
+- Kind: Secret <b>text</b><br>
+
+And 3 different entities<br>
+
+- Secret: the link to the proxy with protocol, IP and port (like http://12.12.12.12:1212)<br>
+- ID (this ID will be used in the pipeline): <b>proxy-settings</b><br>
+
+- Secret: the set of the local resources to access without proxy - it is a string value (like localhost,127.0.0.1,.local,.internal,192.168.0.0/24)<br>
+- ID (this ID will be used in the pipeline): <b>no-proxy-settings</b><br>
+
+- Secret: the parameter to enable the SAST stage - it is the "true" string value without backticks (just 'true')<br>
+- ID (this ID will be used in the pipeline): <b>with-sast</b><br>
