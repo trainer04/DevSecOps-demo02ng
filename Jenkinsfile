@@ -7,7 +7,7 @@ pipeline {
         PROXY_FOR_TOOLS = credentials('proxy-settings')
         NO_PROXY_LIST = 'localhost,127.0.0.1,.local,.internal,192.168.100.0/24'
         
-        // NVD-key - if you do not have it, just comment the string below and comment / remove usage of the "NVD_API_KEY" variable from the script (OWASP Dependency Check section)
+        // NVD-key - if you do not have it, just specify the empty string as the secret text in Jenkins Credentials
         NVD_API_KEY = credentials('NVD-key')
         
         // Vault settings
@@ -15,7 +15,6 @@ pipeline {
         VAULT_TOKEN = 'test-only-token'  // Demo purpose only! In prod - AppRole, JWT and so on
         
         // Network settings
-        // REGISTRY_HOST = '192.168.100.195:5000'
         REGISTRY_HOST = credentials('registry-host-ip')
         APP_NAME = 'vulnerable-app'
         MYSQL_IMAGE = "${REGISTRY_HOST}/mysql:5.7"
