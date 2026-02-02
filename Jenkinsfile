@@ -20,7 +20,6 @@ pipeline {
         MYSQL_IMAGE = "${REGISTRY_HOST}/mysql:5.7"
         
         // Project settings
-        // GIT_REPO = 'https://github.com/trainer04/DevSecOps-demo02ng.git'
         GIT_REPO = credentials('git-repo-link')
         
         // Docker tags
