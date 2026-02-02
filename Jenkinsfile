@@ -75,7 +75,7 @@ pipeline {
             steps {
                 echo "Running Semgrep SAST analysis..."
                 script {
-                if (${env.WITH_SAST} == 'true') {
+                if (\${env.WITH_SAST} == 'true') {
                     try {
                         // Running Semgrep with docker-image
                         sh '''
