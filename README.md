@@ -111,6 +111,20 @@ For the possibility to use the demo pipeline without cloning and further editing
 - Secret: just the local repo IP and port - text <b>without backticks</b> (something like 192.168.0.5:5000)<br>
 - ID (this ID will be used in the pipeline): <b>registry-host-ip</b><br>
 
+#### The IP of the Vault server<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- "Add Credentials"<br>
+- Kind: Secret <b>text</b><br>
+- Secret: the Vault connection string with protocol, IP and port - text <b>without backticks</b> (something like http://192.168.0.4:8200)<br>
+- ID (this ID will be used in the pipeline): <b>vault-ip</b><br>
+
+#### The token for the Vault server<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- "Add Credentials"<br>
+- Kind: Secret <b>text</b><br>
+- Secret: the Vault token, defined on the Vault container creation step - text <b>without backticks</b> (the token specified above - test-only-token)<br>
+- ID (this ID will be used in the pipeline): <b>vault-token</b><br>
+
 #### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they should be stored in Vault)<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - "Add Credentials"<br>
