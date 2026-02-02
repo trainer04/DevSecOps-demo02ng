@@ -126,6 +126,13 @@ For the possibility to use the demo pipeline without cloning and further editing
 - Secret: the Vault token, defined on the Vault container creation step - text <b>without backticks</b> (the token specified above - test-only-token)<br>
 - ID (this ID will be used in the pipeline): <b>vault-token</b><br>
 
+#### The link for the Git repository<br>
+- Jenkins > Credentials > System > Global credentials<br>
+- "Add Credentials"<br>
+- Kind: Secret <b>text</b><br>
+- Secret: just the link to the actual git repo - text <b>without backticks</b> (here it is defined as https://github.com/trainer04/DevSecOps-demo02ng.git)<br>
+- ID (this ID will be used in the pipeline): <b>git-repo-link</b><br>
+
 #### In our scenario we use the private key password. Let's store it in the Jenkins Credentials (in production usually no such passwords used or they should be stored in Vault)<br>
 - Jenkins > Credentials > System > Global credentials<br>
 - "Add Credentials"<br>

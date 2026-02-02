@@ -11,8 +11,6 @@ pipeline {
         NVD_API_KEY = credentials('NVD-key')
         
         // Vault settings
-        // VAULT_ADDR = 'http://192.168.100.194:8200'
-        // VAULT_TOKEN = 'test-only-token'  // Demo purpose only! In prod - AppRole, JWT and so on
         VAULT_ADDR = credentials('vault-ip')
         VAULT_TOKEN = credentials('vault-token')
         
@@ -22,7 +20,8 @@ pipeline {
         MYSQL_IMAGE = "${REGISTRY_HOST}/mysql:5.7"
         
         // Project settings
-        GIT_REPO = 'https://github.com/trainer04/DevSecOps-demo02ng.git'
+        // GIT_REPO = 'https://github.com/trainer04/DevSecOps-demo02ng.git'
+        GIT_REPO = credentials('git-repo-link')
         
         // Docker tags
         BUILD_TAG = "${APP_NAME}:${BUILD_NUMBER}"
