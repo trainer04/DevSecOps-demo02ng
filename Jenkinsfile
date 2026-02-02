@@ -29,7 +29,7 @@ pipeline {
     }
     
     stages {
-        // Step 0: Define variables
+        // Step 0: Define variables - added this to illustrate, how to check if there are some parameter in the Jenkins Credentials store (the pipeline should work even if the 'with-sast' entity absents - so the SAST stage should be skipped)
         stage('Define variables') {
             steps {
                 script {
