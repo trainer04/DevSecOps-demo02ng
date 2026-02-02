@@ -183,4 +183,4 @@ And 3 different entities<br>
 - Secret: the set of the local resources to access without proxy - it is a string value (like localhost,127.0.0.1,.local,.internal,192.168.0.0/24)<br>
 - ID (this ID will be used in the pipeline): <b>no-proxy-settings</b><br>
 
-### At the bottom-line you should have 10 entities in Jenkins Credentials (9 secret texts and 1 secrep file). Once again - this is for the demo purpose only, DO NOT USE such configuration IN PRODUCTION environment!
+### At the bottom-line you should have 10 entities in Jenkins Credentials (9 secret texts and 1 secret file). Once again - this is for the demo purpose only, DO NOT USE such configuration IN PRODUCTION environment!
