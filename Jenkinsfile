@@ -35,16 +35,16 @@ pipeline {
         // Step 0: Define variables
         stage('Define variables') {
             steps {
-                try {
-                    withCredentials([string(credentialsId: 'with-sast', variable: 'WITH_SAST_VALUE')])
-                        {
+                script {
+                    try {
+                        withCredentials([string(credentialsId: 'with-sast', variable: 'WITH_SAST_VALUE')]) {
                             env.WITH_SAST = WITH_SAST_VALUE
                             echo "✅ WITH_SAST value has been provided successfuly"
                         }
-                        
-                } catch (Exception e) {
-                    echo "⚠️ WITH_SAST value has not been provided"
-                    env.WITH_SAST = ''
+                    } catch (Exception e) {
+                        echo "⚠️ WITH_SAST value has not been provided"
+                        env.WITH_SAST = ''
+                    }
                 }
             }
         }
