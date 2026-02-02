@@ -39,9 +39,10 @@ pipeline {
                     try {
                         withCredentials([string(credentialsId: 'with-sast', variable: 'WITH_SAST_VALUE')]) {
                             env.WITH_SAST = WITH_SAST_VALUE
+                        }
                             echo "✅ WITH_SAST value has been provided successfuly"
                             echo "WITH_SAST = ${env.WITH_SAST}"
-                        }
+                        
                     } catch (Exception e) {
                         echo "⚠️ WITH_SAST value has not been provided"
                         env.WITH_SAST = ''
