@@ -3,9 +3,6 @@ pipeline {
     
     environment {
         
-        // Define if enable or skip the Semgrep stage (skipped by default, if the 'with-sast' value is not set)
-        // WITH_SAST = ''
-        
         // Proxy settings (configured in Jenkins)
         PROXY_FOR_TOOLS = credentials('proxy-settings')
         NO_PROXY_LIST = 'localhost,127.0.0.1,.local,.internal,192.168.100.0/24'
@@ -38,10 +35,8 @@ pipeline {
                 script {
                     try {
                         withCredentials([string(credentialsId: 'with-sast', variable: 'WITH_SAST_VALUE')]) {
-                            
                             env.WITH_SAST = WITH_SAST_VALUE
                             echo "✅ WITH_SAST value has been provided successfuly"
-                            
                         }
                         
                         echo "WITH_SAST = ${env.WITH_SAST}"
