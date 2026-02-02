@@ -160,7 +160,7 @@ If you do not have the key, just use the empty string value ('') for the paramet
 The actual pipeline uses Semgrep (as a Docker image) for the SAST stage. The configuration is that the Semgrep container needs a network connection to the https://semgrep.dev site (to obtain rules and so on). Meanwhile, the direct connection may not work properly and the stage fails<br>
 There are at the following ways to resolve it:<br>
 - To configure the Semgrep container to use a local rule storage (it is planned for further pipeline configurations - <b>not released here yet</b>)<br>
-- To skip the SAST stage in the pipeline (by setup the 'with-sast' parameter to an empty ('') or 'false 'false' values - see the related step for the 'with-sast' parameter below)<br>
+- To skip the SAST stage in the pipeline (by setup the <b>'with-sast'</b>,<b>'proxy-settings'</b> and <b>'no-proxy-settings'</b> parameters to an empty ('')  value - see the related steps below)<br>
 - To configure the Semgrep container to use a proxy to reach out the https://semgrep.dev site (<b>if you have such proxy</b>)<br>
 
 #### For the case please create the following set of parameters<br>
@@ -171,6 +171,10 @@ The common path:<br>
 
 And 3 different entities<br>
 
+##### "with-sast"
+- Secret: the parameter to enable the SAST stage - it is the "true" string value without backticks (just 'true')<br>
+- ID (this ID will be used in the pipeline): <b>with-sast</b><br>
+
 ##### "proxy-settings"
 - Secret: the link to the proxy with protocol, IP and port (like http://12.12.12.12:1212)<br>
 - ID (this ID will be used in the pipeline): <b>proxy-settings</b><br>
@@ -179,6 +183,4 @@ And 3 different entities<br>
 - Secret: the set of the local resources to access without proxy - it is a string value (like localhost,127.0.0.1,.local,.internal,192.168.0.0/24)<br>
 - ID (this ID will be used in the pipeline): <b>no-proxy-settings</b><br>
 
-##### "with-sast"
-- Secret: the parameter to enable the SAST stage - it is the "true" string value without backticks (just 'true')<br>
-- ID (this ID will be used in the pipeline): <b>with-sast</b><br>
+### At the bottom-line you should have 10 entities in Jenkins Credentials (9 secret texts and 1 secrep file). Once again - this is for the demo purpose only, DO NOT USE such configuration IN PRODUCTION environment!

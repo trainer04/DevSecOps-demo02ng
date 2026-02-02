@@ -5,7 +5,7 @@ pipeline {
         
         // Proxy settings (configured in Jenkins)
         PROXY_FOR_TOOLS = credentials('proxy-settings')
-        NO_PROXY_LIST = 'localhost,127.0.0.1,.local,.internal,192.168.100.0/24'
+        NO_PROXY_LIST = credentials('no-proxy-settings')
         
         // NVD-key - if you do not have it, just specify the empty string as the secret text in Jenkins Credentials
         NVD_API_KEY = credentials('NVD-key')
