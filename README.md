@@ -171,11 +171,14 @@ The common path:<br>
 
 And 3 different entities<br>
 
+##### "proxy-settings"
 - Secret: the link to the proxy with protocol, IP and port (like http://12.12.12.12:1212)<br>
 - ID (this ID will be used in the pipeline): <b>proxy-settings</b><br>
 
+##### "no-proxy-settings"
 - Secret: the set of the local resources to access without proxy - it is a string value (like localhost,127.0.0.1,.local,.internal,192.168.0.0/24)<br>
 - ID (this ID will be used in the pipeline): <b>no-proxy-settings</b><br>
 
+##### "with-sast"
 - Secret: the parameter to enable the SAST stage - it is the "true" string value without backticks (just 'true')<br>
 - ID (this ID will be used in the pipeline): <b>with-sast</b><br>
