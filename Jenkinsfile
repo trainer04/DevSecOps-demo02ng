@@ -73,9 +73,9 @@ pipeline {
         // Security Step: Static Application Security Testing (SAST) with Semgrep
         stage('SAST: Semgrep Analysis') {
             steps {
-                if (env.WITH_SAST.toBoolean()) {
                 echo "Running Semgrep SAST analysis..."
                 script {
+                if (env.WITH_SAST.toBoolean()) {
                     try {
                         // Running Semgrep with docker-image
                         sh '''
@@ -160,9 +160,9 @@ pipeline {
                         // Show error for decision
                         input 'Should we continue without SAST results?'
                     }
+                } else {
+                echo "⚠️ SAST stage skipped"
                 }
-            } else {
-            echo "⚠️ SAST stage skipped"
             }
             }
         }
