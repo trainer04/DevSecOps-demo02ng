@@ -56,7 +56,6 @@ pipeline {
                 checkout([$class: 'GitSCM', 
                          branches: [[name: '*/main']], 
                          userRemoteConfigs: [[url: "${GIT_REPO}"]]])
-                   // credentialsId: 'github-credentials' // Create Jenkins Credentials for GitHub
                 
                 // Checking the results
                 sh '''
