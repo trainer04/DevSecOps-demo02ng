@@ -102,7 +102,8 @@ Click "Save" finally<br>
 
 ### Configure entities in Jenkins (different variable parameters)<br>
 
-For the possibility to use the demo pipeline without cloning and further editing of the repository files, some set of configurable pipeline parameters are moved in the Jenkins Credentials store<br>
+For the possibility to use the demo pipeline without cloning and further editing of the repository files, some set of configurable pipeline parameters are moved in the Jenkins Credentials store.<br>
+Note! This configuration is insecure and used for demo purpose only, it should not be applied in production environment<br>
 
 #### The IP of the "local repo" server<br>
 - Jenkins > Credentials > System > Global credentials<br>
